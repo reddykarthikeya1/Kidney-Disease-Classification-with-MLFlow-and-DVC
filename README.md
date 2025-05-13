@@ -1,9 +1,5 @@
 # 🩺 Kidney Disease Classification with Deep Learning, MLflow, DVC, and AWS CI/CD
 
-![Kidney CT Scan](https://images.unsplash.com/photo-1511174511562-5f97f4f4e0c8?auto=format&fit=crop&w=600&q=80)
-
----
-
 ## 🚀 Live Demo
 
 **Our project is hosted at:**  
