@@ -1,183 +1,169 @@
-# Kidney-Disease-Classification-MLflow-DVC
+# 🩺 Kidney Disease Classification with Deep Learning, MLflow, DVC, and AWS CI/CD
 
+![Kidney CT Scan](https://upload.wikimedia.org/wikipedia/commons/6/6e/CT_Scan_of_a_Normal_Kidney.png)
 
-## Workflows
+---
 
-1. Update config.yaml
-2. Update secrets.yaml [Optional]
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the dvc.yaml
-10. app.py
+## 🚀 Live Demo
 
-# How to run?
-### STEPS:
+**Our project is hosted at:**  
+🌐 [http://54.226.246.2:8080/](http://54.226.246.2:8080/)
 
-Clone the repository
+---
+
+## 📚 Project Overview
+
+This project is an end-to-end deep learning pipeline for **Kidney Disease Classification** using CT scan images. It leverages modern MLOps tools and best practices, including:
+
+- **TensorFlow/Keras** for model development
+- **MLflow** for experiment tracking
+- **DVC** for data and pipeline versioning
+- **AWS ECR & EC2** for containerized deployment
+- **GitHub Actions** for CI/CD automation
+- **Flask** for serving predictions via a web app
+
+The entire workflow is automated, reproducible, and production-ready.
+
+---
+
+## 🏗️ Project Structure
+
+```
+.
+├── config/                # Configuration files (YAML)
+├── src/                   # Source code (pip installable package)
+│   └── cnnClassifier/     # Main package
+├── artifacts/             # Generated artifacts (models, data, etc.)
+├── templates/             # Frontend (HTML)
+├── research/              # Jupyter notebooks for experimentation
+├── .github/workflows/     # GitHub Actions CI/CD workflows
+├── Dockerfile             # Docker build instructions
+├── dvc.yaml               # DVC pipeline stages
+├── requirements.txt       # Python dependencies
+├── app.py                 # Flask app for serving predictions
+├── main.py                # Pipeline runner
+└── README.md
+```
+
+---
+
+## 🧑‍💻 Features
+
+- **Data Ingestion:** Downloads and unzips kidney CT scan datasets.
+- **Model Preparation:** Uses transfer learning (VGG16) for robust feature extraction.
+- **Training:** Augments data, trains, and saves the best model.
+- **Evaluation:** Evaluates model, logs metrics and artifacts to MLflow.
+- **Experiment Tracking:** All hyperparameters, metrics, and models are tracked with MLflow.
+- **Pipeline Versioning:** DVC orchestrates and versions the entire ML pipeline.
+- **Web App:** Upload CT scan images and get predictions instantly.
+- **CI/CD:** Automated build, test, Dockerization, and deployment to AWS EC2 via GitHub Actions.
+- **Cloud Deployment:** Docker images are stored in AWS ECR and deployed on EC2.
+
+---
+
+## 🛠️ How to Run Locally
+
+### 1. Clone the Repository
 
 ```bash
-https://github.com/krishnaik06/Kidney-Disease-Classification-Deep-Learning-Project
+git clone https://github.com/reddykarthikeya1/Kidney-Disease-Classification-with-MLFlow-and-DVC.git
+cd Kidney-Disease-Classification-with-MLFlow-and-DVC
 ```
-### STEP 01- Create a conda environment after opening the repository
+
+### 2. Create and Activate a Conda Environment
 
 ```bash
-conda create -n cnncls python=3.8 -y
+conda create -n kidney python=3.8 -y
+conda activate kidney
 ```
 
-```bash
-conda activate cnncls
-```
+### 3. Install Requirements
 
-
-### STEP 02- install the requirements
 ```bash
 pip install -r requirements.txt
 ```
 
+### 4. Run the Application
+
 ```bash
-# Finally run the following command
 python app.py
 ```
 
-Now,
-```bash
-open up you local host and port
-```
+Visit [http://localhost:8080](http://localhost:8080) in your browser.
 
+---
 
+## ⚙️ MLOps & Deployment Workflow
 
+### **MLflow Tracking**
 
+- All experiments, parameters, and metrics are logged to MLflow.
+- Easily compare runs and download models.
 
+### **DVC Pipeline**
 
-## MLflow
-
-- [Documentation](https://mlflow.org/docs/latest/index.html)
-
-- [MLflow tutorial](https://youtu.be/qdcHHrsXA48?si=bD5vDS60akNphkem)
-
-##### cmd
-- mlflow ui
-
-### dagshub
-[dagshub](https://dagshub.com/)
-
-MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow \
-MLFLOW_TRACKING_USERNAME=entbappy \
-MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0 \
-python script.py
-
-Run this to export as env variables:
+- Data and model artifacts are versioned and reproducible.
+- Run the full pipeline with:
 
 ```bash
-
-export MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow
-
-export MLFLOW_TRACKING_USERNAME=entbappy 
-
-export MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0
-
+dvc repro
 ```
 
+### **CI/CD with GitHub Actions & AWS**
 
-### DVC cmd
+- **CI:** Linting and unit tests on every push.
+- **CD:** 
+  - Docker image is built and pushed to AWS ECR.
+  - EC2 (self-hosted runner) pulls the latest image and serves the app.
+- **Secrets:** All AWS credentials are securely managed via GitHub Secrets.
 
-1. dvc init
-2. dvc repro
-3. dvc dag
+---
 
+## 🌐 Frontend
 
-## About MLflow & DVC
+- Modern, responsive UI for uploading CT scan images.
+- Animated background and professional layout.
+- Displays prediction results and visualizations.
 
-MLflow
+---
 
- - Its Production Grade
- - Trace all of your expriements
- - Logging & taging your model
+## 📦 Key Files
 
+- `src/cnnClassifier/` - All pipeline and model code.
+- `app.py` - Flask app for serving predictions.
+- `main.py` - Runs the full ML pipeline.
+- `dvc.yaml` - DVC pipeline definition.
+- `Dockerfile` - Containerization instructions.
+- `.github/workflows/main.yaml` - CI/CD pipeline.
 
-DVC 
+---
 
- - Its very lite weight for POC only
- - lite weight expriements tracker
- - It can perform Orchestration (Creating Pipelines)
+## 📊 Example Results
 
+- **Latest Model Accuracy:** 82% (see `scores.json`)
+- **Loss:** 0.33
 
+---
 
-# AWS-CICD-Deployment-with-Github-Actions
+## 📝 References
 
-## 1. Login to AWS console.
+- [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
+- [DVC Documentation](https://dvc.org/doc/)
+- [AWS ECR](https://aws.amazon.com/ecr/)
+- [AWS EC2](https://aws.amazon.com/ec2/)
+- [Project GitHub Repo](https://github.com/reddykarthikeya1/Kidney-Disease-Classification-with-MLFlow-and-DVC)
 
-## 2. Create IAM user for deployment
+---
 
-	#with specific access
+## 👨‍💻 Author
 
-	1. EC2 access : It is virtual machine
+**Karthikeya Reddy**  
+[GitHub](https://github.com/reddykarthikeya1)
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+---
 
+## 📢 License
 
-	#Description: About the deployment
+This project is licensed under the [MIT License](LICENSE).
 
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/chicken
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app
-
-
+---
