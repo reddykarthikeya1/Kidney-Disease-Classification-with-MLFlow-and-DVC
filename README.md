@@ -1,6 +1,6 @@
 # 🩺 Kidney Disease Classification with Deep Learning, MLflow, DVC, and AWS CI/CD
 
-![Kidney CT Scan](https://upload.wikimedia.org/wikipedia/commons/6/6e/CT_Scan_of_a_Normal_Kidney.png)
+![Kidney CT Scan](https://images.unsplash.com/photo-1511174511562-5f97f4f4e0c8?auto=format&fit=crop&w=600&q=80)
 
 ---
 
