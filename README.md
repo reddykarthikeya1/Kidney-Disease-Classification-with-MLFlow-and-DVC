@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-**Our project is hosted at:**  
+**The project is hosted at:**  
 🌐 [http://54.226.246.2:8080/](http://54.226.246.2:8080/)
 
 ---
